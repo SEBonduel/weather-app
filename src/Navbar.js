@@ -17,9 +17,9 @@ const Navbar = ({ onThemeToggle, onSearch }) => {
 
   return (
     <nav className="flex justify-between items-center p-4 bg-[#252931] text-white font-raleway tracking-[0.1em]">
-      <h1 className="text-3xl font-raleway font-light ">SEE WEATHER</h1>
+      <h1 className="text-5xl font-raleway font-light ">SEE WEATHER</h1>
       
-      <div className="relative w-1/2  flex items-center justify-center">
+      <div className="relative w-80  flex items-center justify-center ml-auto mr-10">
         <input
           type="text"
           value={city}
