@@ -57,7 +57,7 @@ const Weather = ({ city, onBackgroundChange }) => {
   }, [weather, onBackgroundChange, backgroundImage]);
 
   return (
-    <div className="relative w-full h-[400px] bg-cover bg-center overflow-hidden">
+    <div className="relative w-full h-[450px] bg-cover bg-center overflow-hidden">
       {/* Ancienne image, elle devient transparente durant la transition */}
       {prevBackgroundImage && (
         <div
@@ -81,7 +81,7 @@ const Weather = ({ city, onBackgroundChange }) => {
       {/* Contenu */}
       {weather && (
         
-        <div className="max-w-max relative z-10 h-[380px] text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] mt-2 ml-10 bg-black bg-opacity-30 pl-10 pr-10 rounded-2xl">
+        <div className="max-w-max relative z-10 h-[380px] text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] mt-10 ml-10 bg-black bg-opacity-30 pl-10 pr-10 rounded-2xl">
           <h3 className="max-w-max font-semibold text-7xl">{weather.name}, {new Date(weather.dt * 1000).toLocaleTimeString()}</h3> 
           {/* , {weather.sys.country} pour afficher le pays */}
           <p className="max-w-max font-normal text-5xl"></p>
