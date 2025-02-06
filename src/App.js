@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Weather from "./Weather"; // Composant pour la météo actuelle
 import './App.css';
 import Navbar from "./Navbar"; // Navbar pour la recherche
-import Weather7Day from "./Weather7Day"; // Composant pour les prévisions sur 7 jours
+import Weather7Day from "./Weather4Day"; // Composant pour les prévisions sur 7 jours
 
 function App() {
   const [city, setCity] = useState(""); // État pour la ville
