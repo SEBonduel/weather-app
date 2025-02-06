@@ -78,23 +78,23 @@ const Weather = ({ city, onBackgroundChange }) => {
         }}
       ></div>
 
-      {/* Contenu textuel */}
+      {/* Contenu */}
       {weather && (
-        <div className="relative z-10 h-[400px] w-auto text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] ml-10 ">
-          <h3 className="font-semibold text-7xl">{weather.name}</h3> 
+        
+        <div className="max-w-max relative z-10 h-[380px] text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] mt-2 ml-10 bg-black bg-opacity-30 pl-10 pr-10 rounded-2xl">
+          <h3 className="max-w-max font-semibold text-7xl">{weather.name}, {new Date(weather.dt * 1000).toLocaleTimeString()}</h3> 
           {/* , {weather.sys.country} pour afficher le pays */}
-          <p className="font-normal text-5xl"></p>
-          <p className="font-normal text-5xl">{weather.weather[0].description.charAt(0).toUpperCase() + weather.weather[0].description.slice(1)}, {weather.main.temp}°C</p>          <p className="font-normal text-5xl">Vent : {weather.wind.speed} m/s</p>
-          <p className="font-normal text-5xl">Humidité : {weather.main.humidity}%</p>
+          <p className="max-w-max font-normal text-5xl"></p>
+          <p className="max-w-max font-normal text-5xl">{weather.weather[0].description.charAt(0).toUpperCase() + weather.weather[0].description.slice(1)}, {weather.main.temp}°C</p>          <p className="font-normal text-5xl">Vent : {weather.wind.speed} m/s</p>
+          <p className="max-w-max font-normal text-5xl">Humidité : {weather.main.humidity}%</p>
 
-            <p className="font-normal text-5xl">
+            <p className="max-w-max font-normal text-5xl">
             {new Date(weather.dt * 1000).toLocaleDateString("fr-FR", {
               weekday: "long", // Nom complet du jour
               day: "numeric", // Jour du mois
               month: "long", // Mois complet
               year: "numeric", // Année complète
             }).replace(/^./, (char) => char.toUpperCase())}  
-             , {new Date(weather.dt * 1000).toLocaleTimeString()}
           </p>
 
           {/* <p className="font-normal text-3xl">Pression : {weather.main.pressure} hPa</p>
