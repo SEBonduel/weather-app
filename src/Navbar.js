@@ -27,7 +27,7 @@ const Navbar = ({ onThemeToggle, onSearch }) => {
 
   return (
     <nav className="flex justify-between items-center p-4 bg-[#252931] text-white font-raleway tracking-[0.1em]">
-      {/* Bouton pour recharger la page */}
+      {/* Bouton pour recharger la page vers l'accueil */}
       <button onClick={handleReload} className="text-5xl font-light">
         SEE WEATHER
       </button>

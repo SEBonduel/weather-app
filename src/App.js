@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Weather from "./Weather"; // Composant pour la météo actuelle
-import Navbar from "./Navbar"; // Navbar pour la recherche
-import Weather4Day from "./Weather4Day"; // Prévisions sur 7 jours
+import Weather from "./Weather";
+import Navbar from "./Navbar";
+import Weather4Day from "./Weather4Day"; 
 import { motion, AnimatePresence } from "framer-motion"; // Import des animations
 import "./App.css";
 
