@@ -69,10 +69,12 @@ const Weather4Day = ({ city }) => {
 
   // Fonction pour déterminer l'image de fond
   const getWeatherBackground = (weatherType) => {
-    if (weatherType.includes("clear")) return "/images/sunny.jpg";
-    if (weatherType.includes("cloud")) return "/images/cloudy.jpg";
-    if (weatherType.includes("rain")) return "/images/rainy.jpg";
-    if (weatherType.includes("snow")) return "/images/snowy.jpg";
+    if (weatherType.includes("clear")) return "/images/sunny2.jpg";
+    if (weatherType.includes("cloud")) return "/images/cloudy2.jpg";
+    if (weatherType.includes("rain")) return "/images/rainy2.jpg";
+    if (weatherType.includes("snow")) return "/images/snowy2.jpg";
+    if (weatherType.includes("mist") || weatherType.includes("fog") || weatherType.includes("haze")) return "/images/foggy2.jpg";
+    if (weatherType.includes("thunderstorm")) return "/images/thunderstorm2.jpg";
     return "/images/default.jpg";
   };
 
@@ -106,8 +108,7 @@ const Weather4Day = ({ city }) => {
                   className="weather-day p-4 rounded-lg text-white bg-cover bg-center relative"
                   style={{ backgroundImage: `url(${getWeatherBackground(weatherType)})` }}
                 >
-                  {/* Filtre sombre pour lisibilité */}
-                  <div className="absolute inset-0 bg-black/50 rounded-lg"></div>
+                  <div className="absolute inset-0 bg-black/30 rounded-lg"></div>
 
                   {/* Contenu en superposition */}
                   <div className="relative z-10 text-center">
