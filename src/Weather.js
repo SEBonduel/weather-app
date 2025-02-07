@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { getWeatherByCity } from "./WeatherService";
+import countries from "i18n-iso-countries";
+import frLocale from "i18n-iso-countries/langs/fr.json";
+
+countries.registerLocale(frLocale);
 
 const Weather = ({ city, onBackgroundChange }) => {
   const [weather, setWeather] = useState(null);
@@ -72,6 +76,8 @@ const Weather = ({ city, onBackgroundChange }) => {
     return () => clearInterval(interval);
   }, []);
 
+  const countryName = weather?.sys?.country ? countries.getName(weather.sys.country, "fr") : "Inconnu";
+
   return (
     <div className="relative w-full h-[450px] bg-cover bg-center overflow-hidden">
       {prevBackgroundImage && (
@@ -97,7 +103,7 @@ const Weather = ({ city, onBackgroundChange }) => {
               {currentTime.toLocaleTimeString()}
             </h3>
             <h3 className="max-w-max font-semibold text-7xl pb-4">
-              {weather.name}, {weather.sys.country}
+              {weather.name}, {countryName}
             </h3>
             <p className="max-w-max font-normal text-5xl">
               {weather.weather[0].description.charAt(0).toUpperCase() +
@@ -119,8 +125,8 @@ const Weather = ({ city, onBackgroundChange }) => {
           </div>
           <div className="absolute bottom-4 right-8 flex items-center bg-black bg-opacity-30 p-4 rounded-2xl text-white">
             <div className="ml-4 mr-4 text-xl">
-            <p>🌅 {sunrise}</p>
-            <p>🌙 {sunset}</p>
+              <p>🌅 {sunrise}</p>
+              <p>🌙 {sunset}</p>
             </div>
           </div>
         </>
