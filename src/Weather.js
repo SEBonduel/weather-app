@@ -7,6 +7,7 @@ countries.registerLocale(frLocale);
 
 const Weather = ({ city, onBackgroundChange }) => {
   const [weather, setWeather] = useState(null);
+  const [error, setError] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState("");
   const [prevBackgroundImage, setPrevBackgroundImage] = useState("");
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -18,8 +19,19 @@ const Weather = ({ city, onBackgroundChange }) => {
   useEffect(() => {
     const fetchWeather = async () => {
       if (!city) return;
-      const data = await getWeatherByCity(city);
-      setWeather(data);
+      try {
+        const data = await getWeatherByCity(city);
+        if (!data || data.cod !== 200) {
+          setError("Ville non trouvée, veuillez réessayer !");
+          setWeather(null);
+          return;
+        }
+        setWeather(data);
+        setError(null);
+      } catch (err) {
+        setError("Erreur de récupération des données météo.");
+        setWeather(null);
+      }
     };
     fetchWeather();
   }, [city]);
@@ -53,28 +65,25 @@ const Weather = ({ city, onBackgroundChange }) => {
         setOpacity(1);
       }, 300);
       onBackgroundChange(weatherMain);
+
+      const updateTime = () => {
+        const utcTime = new Date();
+        const localTime = new Date((utcTime.getTime() + weather.timezone * 1000) + (utcTime.getTimezoneOffset() * 60000));
+        setCurrentTime(localTime);
+      };
       
-      const sunriseTime = new Date(weather.sys.sunrise * 1000).toLocaleTimeString("fr-FR", {
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-      const sunsetTime = new Date(weather.sys.sunset * 1000).toLocaleTimeString("fr-FR", {
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-      setSunrise(sunriseTime);
-      setSunset(sunsetTime);
+      updateTime();
+      const interval = setInterval(updateTime, 1000);
+
+      const options = { hour: "2-digit", minute: "2-digit" };
+      setSunrise(new Date((weather.sys.sunrise + weather.timezone) * 1000).toLocaleTimeString("fr-FR", options));
+      setSunset(new Date((weather.sys.sunset + weather.timezone) * 1000).toLocaleTimeString("fr-FR", options));
+      
+      return () => clearInterval(interval);
     } else {
       setOpacity(0);
     }
   }, [weather, onBackgroundChange, backgroundImage]);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const countryName = weather?.sys?.country ? countries.getName(weather.sys.country, "fr") : "Inconnu";
 
@@ -96,11 +105,13 @@ const Weather = ({ city, onBackgroundChange }) => {
           opacity: opacity,
         }}
       ></div>
-      {weather && (
+      {error ? (
+        <div className="text-white text-center text-3xl mt-20">{error}</div>
+      ) : weather ? (
         <>
           <div className="max-w-max relative z-10 h-[380px] text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] mt-10 ml-10 bg-black bg-opacity-30 pl-10 pr-10 rounded-2xl">
             <h3 className="max-w-max font-semibold text-7xl">
-              {currentTime.toLocaleTimeString()}
+              {currentTime.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
             </h3>
             <h3 className="max-w-max font-semibold text-7xl pb-4">
               {weather.name}, {countryName}
@@ -130,7 +141,7 @@ const Weather = ({ city, onBackgroundChange }) => {
             </div>
           </div>
         </>
-      )}
+      ) : null}
     </div>
   );
 };
