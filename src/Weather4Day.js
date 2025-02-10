@@ -11,6 +11,7 @@ import "./App.css";
 const Weather4Day = ({ city }) => {
   const [forecast, setForecast] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [firstLoad, setFirstLoad] = useState(true);
   const API_KEY = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
@@ -56,16 +57,22 @@ const Weather4Day = ({ city }) => {
           };
         });
 
-        setForecast(processedForecast);
-        setLoading(false);
+        setTimeout(() => {
+          setForecast(processedForecast);
+          setLoading(false);
+          setFirstLoad(false);
+        }, firstLoad ? 1500 : 0);
       } catch (error) {
         console.error("Erreur lors de la récupération des prévisions :", error);
-        setLoading(false);
+        setTimeout(() => {
+          setLoading(false);
+          setFirstLoad(false);
+        }, firstLoad ? 1500 : 0);
       }
     };
 
     fetchWeatherData();
-  }, [city, API_KEY]);
+  }, [city, API_KEY, firstLoad]);
 
   // Fonction pour déterminer l'image de fond
   const getWeatherBackground = (weatherType) => {
@@ -81,7 +88,41 @@ const Weather4Day = ({ city }) => {
   return (
     <div className="weather-4day h-[280px] flex justify-center items-center">
       {loading ? (
-        <p>Chargement...</p>
+        <motion.div
+          className="flex flex-col items-center justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <svg
+            className="animate-spin h-10 w-10 text-blue-400"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v8H4z"
+            ></path>
+          </svg>
+          <motion.p
+            className="mt-2 text-lg text-gray-300"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, repeat: Infinity, repeatType: "reverse" }}
+          >
+            Chargement...
+          </motion.p>
+        </motion.div>
       ) : (
         <Swiper
           slidesPerView={1}
@@ -94,13 +135,12 @@ const Weather4Day = ({ city }) => {
           pagination={{ clickable: true }}
           modules={[Pagination, Navigation]}
           className="mySwiper"
-          speed={600} // Rend le glissement plus fluide
+          speed={600}
         >
           {forecast.map((day, index) => {
             const weatherType = day.weather.main.toLowerCase();
             return (
               <SwiperSlide key={index}>
-                {/* Ajout d'une animation Framer Motion */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -110,7 +150,6 @@ const Weather4Day = ({ city }) => {
                 >
                   <div className="absolute inset-0 bg-black/30 rounded-lg"></div>
 
-                  {/* Contenu en superposition */}
                   <div className="relative z-10 text-center">
                     <h4 className="text-xl font-semibold">{day.date}</h4>
                     <motion.img
