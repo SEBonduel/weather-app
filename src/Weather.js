@@ -130,20 +130,20 @@ const Weather = ({ city, onBackgroundChange }) => {
         </div>
       ) : weather ? (
         <>
-          <div className="max-w-max relative z-10 h-[380px] text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] mt-10 ml-10 bg-black bg-opacity-30 pl-10 pr-10 rounded-2xl">
-            <h3 className="max-w-max font-semibold text-7xl">
+          <div className="max-w-max relative z-10 lg:h-[380px] md:h-[300px] sm:h-[280px] text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] mt-10 ml-10 bg-black bg-opacity-30 pl-10 pr-10 rounded-2xl">
+            <h3 className="max-w-max font-semibold lg:text-7xl md:text-5xl sm:text-5xl">
               {currentTime.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
             </h3>
-            <h3 className="max-w-max font-semibold text-7xl pb-4">
+            <h3 className="max-w-max font-semibold lg:text-7xl md:text-5xl sm:text-5xl pb-4">
               {weather.name}, {countryName}
             </h3>
-            <p className="max-w-max font-normal text-5xl">
+            <p className="max-w-max font-normal lg:text-5xl md:text-3xl sm:text-3xl">
               {weather.weather[0].description.charAt(0).toUpperCase() +
                 weather.weather[0].description.slice(1)}, {weather.main.temp}°C
             </p>
-            <p className="font-normal text-5xl">Vent : {weather.wind.speed} m/s</p>
-            <p className="max-w-max font-normal text-5xl">Humidité : {weather.main.humidity}%</p>
-            <p className="max-w-max font-normal text-5xl">
+            <p className="font-normal lg:text-5xl md:text-3xl sm:text-3xl">Vent : {weather.wind.speed} m/s</p>
+            <p className="max-w-max font-normal lg:text-5xl md:text-3xl sm:text-3xl">Humidité : {weather.main.humidity}%</p>
+            <p className="max-w-max font-normal lg:text-5xl md:text-3xl sm:text-3xl">
               {currentTime.toLocaleDateString("fr-FR", {
                 weekday: "long",
                 day: "numeric",
@@ -152,10 +152,10 @@ const Weather = ({ city, onBackgroundChange }) => {
               }).replace(/^./, (char) => char.toUpperCase())}
             </p>
           </div>
-          <div className="absolute bottom-48 right-8 flex items-center bg-black bg-opacity-30 p-12 rounded-2xl text-white">
+          <div className="absolute bottom-48 top-10 right-8 flex items-center bg-black bg-opacity-30 p-12 rounded-2xl text-white">
             <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="Weather Icon" className="w-32 h-32" />
           </div>
-          <div className="absolute bottom-4 right-8 flex items-center bg-black bg-opacity-30 p-4 rounded-2xl text-white">
+          <div className="absolute bottom-8 right-8 flex items-center bg-black bg-opacity-30 p-4 rounded-2xl text-white">
             <div className="ml-4 mr-4 text-xl">
               <p>🌅 {sunrise}</p>
               <p>🌙 {sunset}</p>
