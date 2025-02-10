@@ -22,7 +22,7 @@ const Weather = ({ city, onBackgroundChange }) => {
       try {
         const data = await getWeatherByCity(city);
         if (!data || data.cod !== 200) {
-          setError("Ville non trouvée, veuillez réessayer  !");
+          setError("Ville non trouvée, veuillez réessayer");
           setWeather(null);
           return;
         }
@@ -107,9 +107,10 @@ const Weather = ({ city, onBackgroundChange }) => {
       ></div>
       {error ? (
           <div className="
-          ease-in-out z-50 text-5xl fixed flex flex-col font-raleway 
+          ease-in-out z-50 text-2xl fixed flex flex-col font-raleway 
           tracking-[0.1em] font items-center justify-center h-screen w-screen 
-          text-white text-center bg-gradient-to-b from-blue-500 to-indigo-600">
+          text-white text-center bg-gradient-to-b from-blue-500 to-indigo-600
+          lg:text-5xl md:text-3xl sm:text-3xl">
             <p className="m-5">{error} </p>
             <p className="m-5"> 
              <svg
@@ -120,7 +121,7 @@ const Weather = ({ city, onBackgroundChange }) => {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-12 h-12 ml-4 animate-pulse"
+                className="w-12 h-12 animate-pulse"
               >
                 <path d="M12 9v4m0 4h.01" />
                 <circle cx="12" cy="12" r="9" />
