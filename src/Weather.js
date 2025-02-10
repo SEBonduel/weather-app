@@ -130,7 +130,7 @@ const Weather = ({ city, onBackgroundChange }) => {
         </div>
       ) : weather ? (
         <>
-          <div className="max-w-max relative z-10 lg:h-[380px] md:h-[300px] sm:h-[280px] text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] mt-10 ml-10 bg-black bg-opacity-30 pl-10 pr-10 rounded-2xl">
+          <div className="max-w-max mr-6 relative z-10 lg:h-[380px] md:h-[300px] sm:h-[280px] text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] mt-10 ml-8 bg-black bg-opacity-30 pl-10 pr-10 rounded-2xl">
             <h3 className="max-w-max font-semibold lg:text-7xl md:text-5xl sm:text-5xl">
               {currentTime.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
             </h3>
