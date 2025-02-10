@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Sun, Moon, X } from "lucide-react"; // Ajout de l'icône X pour la croix
 
-const Navbar = ({ onThemeToggle, onSearch }) => {
+const Navbar = ({ onSearch }) => {
   const [city, setCity] = useState("");
 
   const handleSearch = () => {
@@ -28,12 +28,12 @@ const Navbar = ({ onThemeToggle, onSearch }) => {
   return (
     <nav className="flex justify-between items-center p-4 bg-[#252931] text-white font-raleway tracking-[0.1em]">
       {/* Bouton pour recharger la page vers l'accueil */}
-      <button onClick={handleReload} className="text-5xl font-light">
+      <button onClick={handleReload} className="ml-4 text-5xl font-light">
         SEE WEATHER
       </button>
 
       {/* Champ de recherche avec croix pour effacer */}
-      <div className="relative w-80 flex items-center ml-auto mr-10">
+      <div className="relative w-80 flex items-center ml-auto mr-4">
         <input
           type="text"
           value={city}
@@ -48,12 +48,6 @@ const Navbar = ({ onThemeToggle, onSearch }) => {
           </button>
         )}
       </div>
-
-      {/* Bouton de changement de thème */}
-      <button onClick={onThemeToggle} className="p-2 rounded-full bg-[#333940]">
-        <Sun size={24} className="dark:hidden" />
-        <Moon size={24} className="hidden dark:block" />
-      </button>
     </nav>
   );
 };
