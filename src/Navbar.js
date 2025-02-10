@@ -54,8 +54,12 @@ const Navbar = ({ onSearch }) => {
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter" && suggestions.length > 0) {
-      handleSearch(`${suggestions[0].name}, ${suggestions[0].country}`);
+    if (e.key === "Enter") {
+      if (suggestions.length > 0) {
+        handleSearch(`${suggestions[0].name}, ${suggestions[0].country}`);
+      } else {
+        handleSearch(city);
+      }
     }
   };
 
@@ -69,7 +73,7 @@ const Navbar = ({ onSearch }) => {
   };
 
   return (
-    <nav className="flex md:flex-row justify-between items-center p-4 bg-[#252931] text-white font-raleway tracking-[0.1em]">
+    <nav className="flex flex-col md:flex-row justify-between items-center p-4 bg-[#252931] text-white font-raleway tracking-[0.1em]">
       <button onClick={handleReload} className="mr-1 text-xl lg:ml-4 md:ml-4 sm:ml-4 lg:text-5xl md:text-4xl sm:text-4xl font-light">
         SEE WEATHER
       </button>
