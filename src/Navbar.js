@@ -95,7 +95,7 @@ const Navbar = ({ onSearch }) => {
           </button>
         )}
         {isInputFocused && (suggestions.length > 0 || searchHistory.length > 0) && (
-          <div className="absolute top-12 left-0 w-full bg-white text-black rounded-lg shadow-lg z-50">
+          <div className="absolute top-12 left-0 w-full bg-white text-black rounded-lg shadow-lg z-100">
             {suggestions.length > 0 && (
               <ul>
                 {suggestions.map((suggestion, index) => (

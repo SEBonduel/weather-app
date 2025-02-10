@@ -5,7 +5,10 @@ module.exports = {
     extend: {
       minWidth:{
         'xs': '300px',
-      }
+      },
+      zIndex: {
+        '100': '100',
+      },
     },
   },
   plugins: [],
