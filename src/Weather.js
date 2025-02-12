@@ -154,7 +154,7 @@ const Weather = ({ city, onBackgroundChange }) => {
             <p className="max-w-max font-normal lg:text-4xl md:text-3xl sm:text-3xl">Humidité : {weather.main.humidity}%</p>
           </div>
           <div className="flex justify-center items-center absolute z-10
-              left-2 bottom-8 sm:right-2 md:right-8 lg:right-8
+              left-2 bottom-2 sm:bottom-8 sm:right-2 md:right-8 lg:right-8
               sm:top-10 sm:left-auto
               bg-black bg-opacity-30 p-12 rounded-2xl text-white
               md:w-[224px] md:h-[218px] sm:w-[160px] sm:h-[154px] w-[96px] h-[90px]">
@@ -162,7 +162,7 @@ const Weather = ({ city, onBackgroundChange }) => {
               alt="Weather Icon" 
               className="lg:min-w-[128px] lg:min-h-[128px] md:min-w-[128px] md:min-h-[128px] absolute lg:right-12 md:right-12 sm:right-7 right-0" />
           </div>
-          <div className="absolute h-[96px] bottom-8 right-2 sm:right-2 md:right-8 lg:right-8 flex items-center bg-black bg-opacity-30 p-4 rounded-2xl text-white">
+          <div className="absolute h-[96px] bottom-2 md:bottom-8 right-2 sm:right-2 md:right-8 lg:right-8 flex items-center bg-black bg-opacity-30 p-4 rounded-2xl text-white">
             <div className="ml-4 mr-4 text-xl">
               <p>🌅 {sunrise}</p>
               <p>🌙 {sunset}</p>
