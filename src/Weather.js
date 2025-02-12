@@ -107,10 +107,10 @@ const Weather = ({ city, onBackgroundChange }) => {
       ></div>
       {error ? (
           <div className="
-          ease-in-out z-50 text-2xl fixed flex flex-col font-raleway 
-          tracking-[0.1em] font items-center justify-center h-screen w-screen 
-          text-white text-center bg-gradient-to-b from-blue-500 to-indigo-600
-          lg:text-5xl md:text-3xl sm:text-3xl">
+            ease-in-out z-50 text-2xl fixed flex flex-col font-raleway 
+            tracking-[0.1em] font items-center justify-center h-screen w-screen 
+            text-white text-center bg-gradient-to-b from-blue-500 to-indigo-600
+            lg:text-5xl md:text-3xl sm:text-3xl">
             <p className="m-5">{error} </p>
             <p className="m-5"> 
              <svg
@@ -130,20 +130,14 @@ const Weather = ({ city, onBackgroundChange }) => {
         </div>
       ) : weather ? (
         <>
-          <div className="max-w-max mr-6 relative z-10 lg:h-[380px] md:h-[300px] sm:h-[280px] text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] mt-10 ml-8 bg-black bg-opacity-30 pl-10 pr-10 rounded-2xl">
-            <h3 className="max-w-max font-semibold lg:text-7xl md:text-5xl sm:text-5xl">
+          <div className="text-center sm:max-w-max justify-center items-center sm:items-start mr-6 left-2 relative z-10 lg:h-[380px] md:h-[300px] sm:h-[300px] text-white p-4 justify-center flex flex-col font-raleway tracking-[0.1em] mt-10 ml-2 sm:ml-2 md:ml-8 lg:ml-8 bg-black bg-opacity-30 pl-10 pr-10 rounded-2xl">
+            <h3 className="max-w-max font-semibold lg:text-7xl md:text-5xl sm:text-5xl text-3xl">
               {currentTime.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
             </h3>
-            <h3 className="max-w-max font-semibold lg:text-7xl md:text-5xl sm:text-5xl pb-4">
+            <h3 className="max-w-max justify-center font-semibold lg:text-7xl md:text-5xl sm:text-5xl sm:pb-4 text-3xl">
               {weather.name}, {countryName}
             </h3>
-            <p className="max-w-max font-normal lg:text-5xl md:text-3xl sm:text-3xl">
-              {weather.weather[0].description.charAt(0).toUpperCase() +
-                weather.weather[0].description.slice(1)}, {weather.main.temp}°C
-            </p>
-            <p className="font-normal lg:text-5xl md:text-3xl sm:text-3xl">Vent : {weather.wind.speed} m/s</p>
-            <p className="max-w-max font-normal lg:text-5xl md:text-3xl sm:text-3xl">Humidité : {weather.main.humidity}%</p>
-            <p className="max-w-max font-normal lg:text-5xl md:text-3xl sm:text-3xl">
+            <p className=" items-center max-w-max lg:text-5xl md:text-3xl sm:text-3xl text-2xl pb-4">
               {currentTime.toLocaleDateString("fr-FR", {
                 weekday: "long",
                 day: "numeric",
@@ -151,18 +145,23 @@ const Weather = ({ city, onBackgroundChange }) => {
                 year: "numeric",
               }).replace(/^./, (char) => char.toUpperCase())}
             </p>
-            
+            <p className="max-w-max font-normal lg:text-4xl md:text-3xl sm:text-3xl">
+              {weather.weather[0].description.charAt(0).toUpperCase() +
+                weather.weather[0].description.slice(1)}, {weather.main.temp}°C
+            </p>
+            <p className="font-normal lg:text-4xl md:text-3xl sm:text-3xl">Vent : {weather.wind.speed} m/s</p>
+            <p className="max-w-max font-normal lg:text-4xl md:text-3xl sm:text-3xl">Humidité : {weather.main.humidity}%</p>
           </div>
           <div className="flex justify-center items-center absolute z-10
-          left-8 bottom-8 sm:right-2 md:right-8 lg:right-8
-          sm:top-10 sm:left-auto
-          bg-black bg-opacity-30 p-12 rounded-2xl text-white
-          md:w-[224px] md:h-[218px] sm:w-[160px] sm:h-[154px] w-[96px] h-[90px]">
-  <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
-       alt="Weather Icon" 
-       className="lg:min-w-[128px] lg:min-h-[128px] md:min-w-[128px] md:min-h-[128px] absolute lg:right-12 md:right-12 sm:right-7 right-0" />
-</div>
-          <div className="absolute bottom-8 right-2 sm:right-2 md:right-8 lg:right-8 flex items-center bg-black bg-opacity-30 p-4 rounded-2xl text-white">
+              left-2 bottom-8 sm:right-2 md:right-8 lg:right-8
+              sm:top-10 sm:left-auto
+              bg-black bg-opacity-30 p-12 rounded-2xl text-white
+              md:w-[224px] md:h-[218px] sm:w-[160px] sm:h-[154px] w-[96px] h-[90px]">
+              <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
+              alt="Weather Icon" 
+              className="lg:min-w-[128px] lg:min-h-[128px] md:min-w-[128px] md:min-h-[128px] absolute lg:right-12 md:right-12 sm:right-7 right-0" />
+          </div>
+          <div className="absolute h-[96px] bottom-8 right-2 sm:right-2 md:right-8 lg:right-8 flex items-center bg-black bg-opacity-30 p-4 rounded-2xl text-white">
             <div className="ml-4 mr-4 text-xl">
               <p>🌅 {sunrise}</p>
               <p>🌙 {sunset}</p>
