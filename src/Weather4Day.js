@@ -86,7 +86,7 @@ const Weather4Day = ({ city }) => {
   };
 
   return (
-    <div className="weather-4day h-[280px] flex justify-center items-center">
+    <div className="weather-4day h-[280px] flex justify-center items-center ml-2 mr-2">
       {loading ? (
         <motion.div
           className="flex flex-col items-center justify-center"
@@ -145,7 +145,7 @@ const Weather4Day = ({ city }) => {
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="weather-day p-4 rounded-lg text-white bg-cover bg-center relative"
+                  className="weather-day p-8 rounded-lg text-white bg-cover bg-center relative"
                   style={{ backgroundImage: `url(${getWeatherBackground(weatherType)})` }}
                 >
                   <div className="absolute inset-0 bg-black/30 rounded-lg"></div>
