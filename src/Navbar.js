@@ -38,7 +38,8 @@ const Navbar = ({ onSearch }) => {
         setSearchHistory([]);
       }
     }, 2000));
-  }, [city, API_KEY, typingTimeout, lastTypedTime]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [city, API_KEY]);
 
   const handleSearch = (selectedCity) => {
     setCity(selectedCity);
