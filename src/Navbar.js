@@ -35,6 +35,7 @@ const Navbar = ({ onSearch }) => {
     setTypingTimeout(setTimeout(() => {
       if (Date.now() - lastTypedTime >= 2000) {
         setSuggestions([]);
+        setSearchHistory([]);
       }
     }, 2000));
   }, [city, API_KEY]);
