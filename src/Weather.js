@@ -154,12 +154,15 @@ const Weather = ({ city, onBackgroundChange }) => {
             
           </div>
           <div className="flex justify-center items-center absolute z-10
-          sm:right-10 sm:top-10 
-          bg-black bg-opacity-30 p-12 rounded-2xl text-white 
+          left-8 bottom-8 sm:right-2 md:right-8 lg:right-8
+          sm:top-10 sm:left-auto
+          bg-black bg-opacity-30 p-12 rounded-2xl text-white
           md:w-[224px] md:h-[218px] sm:w-[160px] sm:h-[154px] w-[96px] h-[90px]">
-            <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="Weather Icon" className="lg:min-w-[128px] lg:min-h-[128px] md:min-w-[128px] md:min-h-[128px] absolute lg:right-12 md:right-12 sm:right-7 right-0" />
-          </div>
-          <div className="absolute bottom-8 right-8 flex items-center bg-black bg-opacity-30 p-4 rounded-2xl text-white">
+  <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} 
+       alt="Weather Icon" 
+       className="lg:min-w-[128px] lg:min-h-[128px] md:min-w-[128px] md:min-h-[128px] absolute lg:right-12 md:right-12 sm:right-7 right-0" />
+</div>
+          <div className="absolute bottom-8 right-2 sm:right-2 md:right-8 lg:right-8 flex items-center bg-black bg-opacity-30 p-4 rounded-2xl text-white">
             <div className="ml-4 mr-4 text-xl">
               <p>🌅 {sunrise}</p>
               <p>🌙 {sunset}</p>
