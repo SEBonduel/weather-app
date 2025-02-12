@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { getWeatherByCity } from "./WeatherService";
 import countries from "i18n-iso-countries";

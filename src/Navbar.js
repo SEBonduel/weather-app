@@ -38,7 +38,7 @@ const Navbar = ({ onSearch }) => {
         setSearchHistory([]);
       }
     }, 2000));
-  }, [city, API_KEY]);
+  }, [city, API_KEY, typingTimeout, lastTypedTime]);
 
   const handleSearch = (selectedCity) => {
     setCity(selectedCity);
