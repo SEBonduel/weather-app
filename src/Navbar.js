@@ -11,6 +11,16 @@ const Navbar = ({ onSearch }) => {
   const [lastTypedTime, setLastTypedTime] = useState(null);
   const API_KEY = process.env.REACT_APP_API_KEY;
 
+  // Charger la dernière recherche enregistrée
+  useEffect(() => {
+    const savedCity = localStorage.getItem("lastSearchedCity");
+    if (savedCity) {
+      setCity(savedCity);
+      onSearch(savedCity); // Relancer la recherche au démarrage
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   useEffect(() => {
     if (city.length < 2) {
       setSuggestions([]);
@@ -32,12 +42,13 @@ const Navbar = ({ onSearch }) => {
     setLastTypedTime(Date.now());
 
     if (typingTimeout) clearTimeout(typingTimeout);
-    setTypingTimeout(setTimeout(() => {
-      if (Date.now() - lastTypedTime >= 2000) {
-        setSuggestions([]);
-        setSearchHistory([]);
-      }
-    }, 2000));
+    setTypingTimeout(
+      setTimeout(() => {
+        if (Date.now() - lastTypedTime >= 5000) {
+          setSuggestions([]);
+        }
+      }, 5000)
+    );
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [city, API_KEY]);
 
@@ -45,6 +56,9 @@ const Navbar = ({ onSearch }) => {
     setCity(selectedCity);
     onSearch(selectedCity);
     setSuggestions([]);
+
+    // Sauvegarder la ville dans localStorage
+    localStorage.setItem("lastSearchedCity", selectedCity);
 
     setSearchHistory((prevHistory) => {
       if (!prevHistory.includes(selectedCity)) {
